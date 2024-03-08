@@ -3,12 +3,25 @@ import {
   formatCityName,
   removeChildren,
   containsNumber,
+  handleToggleUnit,
 } from "./src/helpers.js";
 
 const locationInput = document.getElementById("search-location");
 const searchButton = document.getElementById("search-button");
 
 const heroSection = document.querySelector(".hero");
+const toggleUnitBtn = document.querySelector("#toggle-unit");
+
+let currentLocation;
+let temperatureUnit = "celsius";
+
+toggleUnitBtn.addEventListener("click", function () {
+  handleToggleUnit();
+  temperatureUnit === "celsius"
+    ? (temperatureUnit = "fahrenheit")
+    : (temperatureUnit = "celsius");
+  displayCard(currentLocation);
+});
 
 function geoFindMe() {
   const status = document.getElementById("status");
@@ -17,7 +30,7 @@ function geoFindMe() {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    status.textContent = ""
+    status.textContent = "";
 
     const formattedCoord = formatCoordinates(latitude, longitude);
     fetchWeather(formattedCoord);
@@ -38,21 +51,19 @@ function geoFindMe() {
 const KEY_API = "00943edc7ab94b01b96175007240403";
 const BASE_API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${KEY_API}&days=7&q=`;
 
-let currentCoordinates;
-
 const formatCoordinates = (lat, long) => {
   let currentLatitude = String(lat);
   let currentLongitude = String(long);
 
-  currentCoordinates = currentLatitude + "," + currentLongitude;
-  return currentCoordinates;
+  currentLocation = currentLatitude + "," + currentLongitude;
+  return currentLocation;
 };
 
 const createURL = (location) => {
   let formattedLocation;
 
   if (containsNumber(location)) {
-    formattedLocation = currentCoordinates;
+    formattedLocation = currentLocation;
   } else {
     formattedLocation = formatCityName(location);
   }
@@ -60,11 +71,12 @@ const createURL = (location) => {
   return BASE_API_URL + formattedLocation;
 };
 
-const fetchWeather = async (currentLocation) => {
+const fetchWeather = async (location) => {
   try {
-    const currentURL = createURL(currentLocation);
+    const currentURL = createURL(location);
     const response = await fetch(currentURL);
     const city = await response.json();
+    currentLocation = city;
     displayCard(city);
   } catch (err) {
     console.log(err);
@@ -73,7 +85,7 @@ const fetchWeather = async (currentLocation) => {
 
 const displayCard = (city) => {
   removeChildren(heroSection);
-  heroSection.appendChild(Card(city));
+  heroSection.appendChild(Card(city, temperatureUnit));
 };
 
 searchButton.addEventListener("click", () => {
@@ -89,5 +101,4 @@ locationInput.addEventListener("keypress", (e) => {
   }
 });
 
-window.addEventListener("load", geoFindMe
-);
+window.addEventListener("load", geoFindMe);

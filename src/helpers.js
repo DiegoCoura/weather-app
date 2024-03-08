@@ -31,3 +31,16 @@ export const correctDayOffset = (date) => {
 export const containsNumber = (value) => {
   return /[0-9]/.test(value);
 }
+
+export const handleToggleUnit = () => {
+  const slideSelection = document.querySelector(".slide-selection");
+  if(slideSelection.classList.contains("slide-select-celsius")){
+    slideSelection.classList.remove("slide-select-celsius")
+    slideSelection.classList.add("slide-select-fahrenheit")
+
+  } else if (slideSelection.classList.contains("slide-select-fahrenheit")){
+    slideSelection.classList.remove("slide-select-fahrenheit")
+    slideSelection.classList.add("slide-select-celsius")
+
+  }
+};

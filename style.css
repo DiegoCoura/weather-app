@@ -30,6 +30,39 @@ body {
   height: 100vh;
 }
 
+.toggle-unit {
+  display: flex;
+  padding: 10px 20px;
+  background: var(--blue);
+  width: 110px;
+  justify-content: space-between;
+  border-radius: 22px;
+  position: absolute;
+  right: 22px;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.slide-selection {
+  position: absolute;
+  border: 2px white solid;
+  padding: 9px 20px;
+  top: -2px;
+  border-radius: inherit;
+  background-color: transparent;
+  height: 42px;
+  width: 60px;
+  transition: 0.4s ease-out;
+}
+
+.slide-select-fahrenheit {
+  left: 48px;
+}
+
+.slide-select-celsius {
+  left: -2px;
+}
+
 .header {
   margin-bottom: 20px;
 }
@@ -39,7 +72,7 @@ body {
   margin-bottom: 10px;
 }
 
-.status-message{
+.status-message {
   text-align: center;
 }
 

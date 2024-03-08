@@ -1,6 +1,14 @@
 import { correctDayOffset, createCustomElement } from "../helpers.js";
 
-const Card = (weatherInfos) => {
+const Card = (weatherInfos, temperatureUnit) => {
+  let unit;
+
+  if (temperatureUnit === "celsius") {
+    unit = "c";
+  } else if (temperatureUnit === "fahrenheit") {
+    unit = "f";
+  }
+
   const forecastDays = weatherInfos.forecast.forecastday;
 
   const container = createCustomElement("div", { className: "card-container" });
@@ -13,7 +21,13 @@ const Card = (weatherInfos) => {
 
   const temperature = createCustomElement("div", {
     className: "main-temperature",
-    innerText: `${Math.round(weatherInfos.current.temp_c)}ºC`,
+    innerText: `${
+      temperatureUnit === "celsius"
+        ? Math.round(weatherInfos.current.temp_c)
+        : "" || temperatureUnit === "fahrenheit"
+        ? Math.round(weatherInfos.current.temp_f)
+        : ""
+    }º${unit.toUpperCase()}`,
   });
 
   const conditionIcon = createCustomElement("img", {
@@ -27,10 +41,20 @@ const Card = (weatherInfos) => {
   });
 
   const minMaxTemp = createCustomElement("div", {
-    className: "min-max-temperature",
-    innerText: `${Math.round(forecastDays[0].day.maxtemp_c)}º/${Math.round(
-      forecastDays[0].day.maxtemp_c
-    )}º`,
+    className: "main-min-max-temperature",
+    innerText: `${
+      temperatureUnit === "celsius"
+        ? Math.round(forecastDays[0].day.maxtemp_c)
+        : "" || temperatureUnit === "fahrenheit"
+        ? Math.round(forecastDays[0].day.maxtemp_f)
+        : ""
+    }º/${
+      temperatureUnit === "celsius"
+        ? Math.round(forecastDays[0].day.mintemp_c)
+        : "" || temperatureUnit === "fahrenheit"
+        ? Math.round(forecastDays[0].day.mintemp_f)
+        : ""
+    }º`,
   });
 
   const mainFooter = createCustomElement("div", {
@@ -94,6 +118,20 @@ const Card = (weatherInfos) => {
       innerText: `${Math.round(foreDay.day.maxtemp_c)}º ${Math.round(
         foreDay.day.mintemp_c
       )}º`,
+
+      innerText: `${
+        temperatureUnit === "celsius"
+          ? Math.round(foreDay.day.maxtemp_c)
+          : "" || temperatureUnit === "fahrenheit"
+          ? Math.round(foreDay.day.maxtemp_f)
+          : ""
+      }º ${
+        temperatureUnit === "celsius"
+          ? Math.round(foreDay.day.mintemp_c)
+          : "" || temperatureUnit === "fahrenheit"
+          ? Math.round(foreDay.day.mintemp_f)
+          : ""
+      }º`
     });
 
     weekDayRow.appendChild(weekDay);
