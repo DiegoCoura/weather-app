@@ -3,17 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/99de766d92.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
     <div class="header">
-      <input
-        type="text"
-        name="location"
-        id="search-location"
-        placeholder="location"
-      />
+      <div class="search-container">
+        <input
+          type="text"
+          name="location"
+          id="search-location"
+          class="search-location"
+          placeholder="Search a location"
+          autocomplete="off"
+        />
+        <button id="search-button" type="submit" class="search-button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
     </div>
     <div class="hero"></div>
 

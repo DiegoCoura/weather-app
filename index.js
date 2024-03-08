@@ -2,6 +2,8 @@ import Card from "./src/components/Card.js";
 import { formatCityName, removeChildren } from "./src/helpers.js";
 
 const locationInput = document.getElementById("search-location");
+const searchButton = document.getElementById("search-button");
+
 const heroSection = document.querySelector(".hero");
 
 const KEY_API = "00943edc7ab94b01b96175007240403";
@@ -28,10 +30,17 @@ const displayCard = (city) => {
   heroSection.appendChild(Card(city));
 };
 
+searchButton.addEventListener("click", (e) => {
+  const cityName = locationInput.value;
+  if(cityName.trim() === "") return;
+  locationInput.value = "";
+  fetchWeather(cityName);
+});
+
 locationInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    const cityName = e.target.value;
-    locationInput.value = "";
-    fetchWeather(cityName);
+    searchButton.click()
   }
 });
+
+document.addEventListener("load", fetchWeather("São Paulo"));

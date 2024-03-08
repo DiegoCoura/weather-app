@@ -1,13 +1,111 @@
-*{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    box-sizing: border-box;
+:root {
+  --blue: #184f77;
+  --light-blue: #178bad;
+  --dark-blue: #0e2d44;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+}
+
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to bottom, var(--light-blue), var(--blue));
+  height: 100vh;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-location {
+  border-radius: 20px;
+  border: none;
+  padding: 8px 22px;
+  font-size: 1rem;
+  background-color: #0e2d44;
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  height: 34px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.fa-magnifying-glass {
+  font-size: 1.125rem;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 20px;
+  align-items: end;
+  width: 330px;
+}
+
+.card-title {
+  grid-column: span 2;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  margin-bottom: 12px;
+}
+
+.main-temperature {
+  font-size: 5rem;
+}
+
+.main-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.condition-icon {
+  width: 6rem;
+}
+
+.week-container {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+}
+
+.week-container-row,
+.week-container-row > * {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.weekday {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.day-weather-img {
+  width: 2.5rem;
 }

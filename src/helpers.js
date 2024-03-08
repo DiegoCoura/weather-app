@@ -20,3 +20,10 @@ export const removeChildren = (parent) => {
     parent.removeChild(parent.lastChild);
   }
 };
+
+export const correctDayOffset = (date) => {
+  date.setMinutes(
+    date.getMinutes() + date.getTimezoneOffset()
+  );
+  return date.toLocaleDateString("en-us", { weekday: "long" })
+}
