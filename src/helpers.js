@@ -27,3 +27,7 @@ export const correctDayOffset = (date) => {
   );
   return date.toLocaleDateString("en-us", { weekday: "long" })
 }
+
+export const containsNumber = (value) => {
+  return /[0-9]/.test(value);
+}

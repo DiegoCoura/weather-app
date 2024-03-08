@@ -36,6 +36,11 @@ body {
 
 .search-container {
   position: relative;
+  margin-bottom: 10px;
+}
+
+.status-message{
+  text-align: center;
 }
 
 .search-location {
