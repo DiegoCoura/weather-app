@@ -48,8 +48,8 @@ function geoFindMe() {
   }
 }
 
-const KEY_API = "00943edc7ab94b01b96175007240403";
-const BASE_API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${KEY_API}&days=7&q=`;
+const KEY_API = "55ff7de4b3424d23884142430241803";
+const BASE_API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${KEY_API}&days=3&q=`;
 
 const formatCoordinates = (lat, long) => {
   let currentLatitude = String(lat);
